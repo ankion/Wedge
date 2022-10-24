@@ -1211,7 +1211,13 @@ class Wedge extends EventEmitter{
                     $(v).replaceWith('[url='+encodeURI($.location(href))+']'+encodeURI($(v).text())+'[/url]');
                 }
             });
-            chapter.content = $('body').html();
+
+            if ($('body').length){
+                chapter.content = $('body').html();
+            } else {
+                chapter.content = $.html();
+            }
+
             return fn(chapter);
         }
         let maxDepth = this.getConfig('book.maxDepth') || Infinity;
